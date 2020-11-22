@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center pt-5">
         <div class="col-md-3 pr-5 ">
-          <a href="{{route('show')}}">プロフィール</a><br>
+          <a href="">プロフィール</a><br>
           <a href="">もくもく会の作成</a><br>
           <a href="">投稿の管理・編集</a><br>
           <a href="}}">チャット</a>
@@ -21,14 +21,6 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">開催地域</th>
-                            <td>{{$post->area}}</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">学習言語</th>
-                            <td>{{$post->lang}}</td>
-                          </tr>
                           <tr>
                             <th scope="row">メッセージ</th>
                             <td>{{$post->message}}</td>

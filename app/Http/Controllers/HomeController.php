@@ -42,4 +42,8 @@ class HomeController extends Controller
             'users' => $users
         ]);
     }
+    public function detail()
+    {
+        return view ('details.index');
+    }
 }

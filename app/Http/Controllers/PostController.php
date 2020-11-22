@@ -15,9 +15,13 @@ class PostController extends Controller
     public function index()
     {
         $posts =Post::all();
+        // ここのloadはbelongstoで定義した関数を使うので忘れずに<!DOCTYPE html>
+        $posts->load('user');
+        
         return view ('posts.index',[
             'posts' => $posts,
         ]);
+
     }
 
     /**
@@ -152,4 +156,50 @@ class PostController extends Controller
         
         return redirect('post/index');
     }
+
+    public function detail($id)
+    {   $post =Post::find($id);
+        if($post->area ===1){
+            $area ='東北';
+        }
+        if($post->area ===2){
+            $area ='関西';
+        }
+        if($post->area ===3){
+            $area ='関東';
+        }
+        if($post->area ===4){
+            $area ='近畿';
+        }
+        if($post->area ===5){
+            $area ='四国';
+        }
+        if($post->area ===6){
+            $area ='中国';
+        }
+        if($post->area ===7){
+            $area ='九州';
+        }
+
+        
+        if($post->lang ===1){
+            $lang ='HTML/CSS';
+        }
+        if($post->lang ===2){
+            $lang ='JavaScript';
+        }
+        if($post->lang ===3){
+            $lang ='PHP';
+        }
+        if($post->lang ===4){
+            $lang ='Ruby';
+        }
+        if($post->lang ===5){
+            $lang ='その他';
+        }
+
+        return view ('details.index' , compact('post' ,'area' , 'lang'));
+    }
+
+    
 }
