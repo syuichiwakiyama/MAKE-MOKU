@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPostsToPostsTable extends Migration
+class CreateAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class AddPostsToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id');
+        Schema::create('areas', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('area_name')->nullable();
+            $table->timestamps();
         });
-
-   
     }
 
     /**
@@ -27,8 +27,6 @@ class AddPostsToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('areas');
     }
 }

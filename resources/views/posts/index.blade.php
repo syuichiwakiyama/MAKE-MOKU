@@ -4,15 +4,14 @@
 <div class="container">
     <div class="row justify-content-center pt-5">
         <div class="col-md-3 pr-5 ">
-          <a href="">プロフィール</a><br>
-          <a href="">もくもく会の作成</a><br>
-          <a href="">投稿の管理・編集</a><br>
-          <a href="}}">チャット</a>
+          <a href="{{route('post.create')}}">もくもく会の作成</a><br>
+          <a href="{{route('post.index')}}">投稿の管理・編集</a><br>
         </div>  
         <div class="col-md-6">
             <div class="card">
                 @foreach ($posts as $post)
-                <div class="card-header">ダッシュボード </div>
+                @if($post->user->id === Auth::id())
+                <div class="card-header">ダッシュボード</div>
                       <table class="table">
                         <thead>
                           <tr>
@@ -31,6 +30,7 @@
                           </tr>
                         </tbody>
                       </table> 
+                @endif
                 @endforeach  
             </div><!-- card -->
         </div><!-- col-md-6 -->

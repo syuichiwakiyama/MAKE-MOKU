@@ -4,10 +4,8 @@
 <div class="container">
     <div class="row justify-content-center pt-5">
         <div class="col-md-3 pr-5 ">
-          <a href="">プロフィール</a><br>
-          <a href="">もくもく会の作成</a><br>
-          <a href="">投稿の管理・編集</a><br>
-          <a href="">チャット</a>
+          <a href="{{route('post.create')}}">もくもく会の作成</a><br>
+          <a href="{{route('post.index')}}">投稿の管理・編集</a><br>
         </div>  
         <div class="col-md-6">
             <div class="card">
@@ -15,33 +13,33 @@
                   <div class="card-body">
                   <form method="post" action="{{route('post.update' , ['id' => $post->id])}}">
                       @csrf
-                    <input type="textarea" name="user_id" value="{{$post->user_id}}">
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                       <div class="form-group">
                         <label for="exampleFormControlInput1">もくもく会のタイトル</label>
                         <input name ="title"type="textarea" class="form-control" id="exampleFormControlInput1" placeholder="おしゃべりもくもく会" value="{{$post->title}}">
                       </div>
                       <div class="form-group">
-                        <label name="area" for="exampleFormControlSelect1">開催エリア</label>
-                        <select name="area" class="form-control" id="exampleFormControlSelect1">
+                        <label name="area_id" for="exampleFormControlSelect1">開催エリア</label>
+                        <select name="area_id" class="form-control" id="exampleFormControlSelect1">
                           <option value="">選択してください</option>
-                          <option value="1" @if($post->area ===1 ) selected @endif>東北</option>
-                          <option value="2" @if($post->area ===2 ) selected @endif>関西</option>
-                          <option value="3" @if($post->area ===3 ) selected @endif>関東</option>
-                          <option value="4" @if($post->area ===4 ) selected @endif>近畿</option>
-                          <option value="5" @if($post->area ===5 ) selected @endif>四国</option>
-                          <option value="6" @if($post->area ===6 ) selected @endif>中国</option>
-                          <option value="7" @if($post->area ===7 ) selected @endif>九州</option>
+                          <option value="1" @if($post->area_id ===1 ) selected @endif>東北</option>
+                          <option value="2" @if($post->area_id ===2 ) selected @endif>関西</option>
+                          <option value="3" @if($post->area_id ===3 ) selected @endif>関東</option>
+                          <option value="4" @if($post->area_id ===4 ) selected @endif>近畿</option>
+                          <option value="5" @if($post->area_id ===5 ) selected @endif>四国</option>
+                          <option value="6" @if($post->area_id ===6 ) selected @endif>中国</option>
+                          <option value="7" @if($post->area_id ===7 ) selected @endif>九州</option>
                         </select>
                       </div>
                       <div class="form-group">
-                        <label name="lang" for="exampleFormControlSelect1">学習内容</label>
-                        <select name="lang" class="form-control" id="exampleFormControlSelect1" >
+                        <label name="lang_id" for="exampleFormControlSelect1">学習内容</label>
+                        <select name="lang_id" class="form-control" id="exampleFormControlSelect1" >
                           <option value="">選択してください</option>
-                          <option value="1" @if($post->lang ===1 ) selected @endif>HTML/CSS</option>
-                          <option value="2" @if($post->lang ===2 ) selected @endif>JavaScript</option>
-                          <option value="3" @if($post->lang ===3 ) selected @endif>PHP</option>
-                          <option value="4" @if($post->lang ===4 ) selected @endif>Ruby</option>
-                          <option value="5" @if($post->lang ===5 ) selected @endif>その他</option>
+                          <option value="1" @if($post->lang_id ===1 ) selected @endif>HTML/CSS</option>
+                          <option value="2" @if($post->lang_id ===2 ) selected @endif>JavaScript</option>
+                          <option value="3" @if($post->lang_id ===3 ) selected @endif>PHP</option>
+                          <option value="4" @if($post->lang_id ===4 ) selected @endif>Ruby</option>
+                          <option value="5" @if($post->lang_id ===5 ) selected @endif>その他</option>
                         </select>
                       </div>
 
@@ -51,7 +49,6 @@
                       </div>
                         <button type="submit" class="btn btn-secondary text:center ">投稿を更新する</button>
                     </form>
-                  
                 </div><!-- card-body -->
             </div><!-- card -->
         </div><!-- col-md-8 -->

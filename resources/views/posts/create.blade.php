@@ -4,10 +4,8 @@
 <div class="container">
     <div class="row justify-content-center pt-5">
         <div class="col-md-3 pr-5 ">
-          <a href="">プロフィール</a><br>
-          <a href="">もくもく会の作成</a><br>
-          <a href="">投稿の管理・編集</a><br>
-          <a href="}}">チャット</a>
+          <a href="{{route('post.create')}}">もくもく会の作成</a><br>
+          <a href="{{route('post.index')}}">投稿の管理・編集</a><br>
         </div>  
         <div class="col-md-6">
             <div class="card">
@@ -15,14 +13,20 @@
                   <div class="card-body">
                     <form method="post" action="{{route('post.store')}}">
                     @csrf
-                    <input type="textarea" name="user_id" value="">
+                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
                       <div class="form-group">
                         <label for="exampleFormControlInput1">もくもく会のタイトル</label>
-                        <input name ="title"type="textarea" class="form-control" id="exampleFormControlInput1" placeholder="おしゃべりもくもく会">
+                        @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <input name ="title"type="textarea" class="form-control" id="exampleFormControlInput1" placeholder="おしゃべりもくもく会" value="{{old('title')}}">
                       </div>
                       <div class="form-group">
-                        <label name="area" for="exampleFormControlSelect1">開催エリア</label>
-                        <select name="area" class="form-control" id="exampleFormControlSelect1">
+                        <label name="area_id" for="exampleFormControlSelect1">開催エリア</label>
+                        @error('area_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <select name="area_id" class="form-control" id="exampleFormControlSelect1" value="{{old('area_id')}}">
                           <option value="">選択してください</option>
                           <option value="1">東北</option>
                           <option value="2">関西</option>
@@ -34,8 +38,11 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label name="lang" for="exampleFormControlSelect1">学習内容</label>
-                        <select name="lang" class="form-control" id="exampleFormControlSelect1">
+                        <label name="lang_id" for="exampleFormControlSelect1">学習内容</label>
+                        @error('lang_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <select name="lang_id" class="form-control" id="exampleFormControlSelect1">
                           <option value="">選択してください</option>
                           <option value="1">HTML/CSS</option>
                           <option value="2">JavaScript</option>
@@ -47,7 +54,10 @@
 
                       <div class="form-group">
                         <label name="message" for="exampleFormControlTextarea1">メッセージ</label>
-                        <textarea name ="message"class="form-control" id="exampleFormControlTextarea1" placeholder="皆さんと黙々できることを楽しみにしています" rows="3"></textarea>
+                        @error('message')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        <textarea name ="message"class="form-control" id="exampleFormControlTextarea1" placeholder="皆さんともくもくできることを楽しみにしています" rows="3">{{old('message')}}</textarea>
                       </div>
                       
                       <button type="submit" class="btn btn-secondary text:center">この内容で投稿する</button>
